@@ -22,9 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.get_data_button)
-    Button getDataButton;
-
     private List<RecipeCard> recipeCards = null;
     ArrayList<IngredientsList> ingredientsLists = null;
 
