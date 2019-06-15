@@ -3,8 +3,11 @@ package com.example.recipeapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.recipeapp.Model.IngredientsList;
 import com.example.recipeapp.Model.RecipeCard;
@@ -12,7 +15,8 @@ import com.example.recipeapp.Model.StepsList;
 
 import java.util.ArrayList;
 
-public class StepAndIngredientsActivity extends AppCompatActivity {
+public class StepAndIngredientsActivity extends AppCompatActivity implements
+    StepAndIngredientsFragment.OnListItemClickListener{
 
     private String recipeName;
     private String recipeServings;
@@ -61,5 +65,14 @@ public class StepAndIngredientsActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .add(R.id.recipe_steps_frame_layout, stepAndIngredientsFragment)
                 .commit();
+    }
+
+    @Override
+    public void onListItemClick(int position) {
+        Toast.makeText(this, "hallelujah", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(StepAndIngredientsActivity.this, StepDetails.class);
+        intent.putParcelableArrayListExtra(Constants.SEND_RECIPE_STEPS_LIST, stepsLists);
+        startActivity(intent);
     }
 }
