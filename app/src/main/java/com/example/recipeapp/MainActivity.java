@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,8 +71,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
                 recipeCards = response.body();
 
                 displayData(recipeCards);
-
-                Log.e(TAG, Integer.toString(recipeCards.size()));
             }
 
             @Override
@@ -106,5 +105,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
     @Override
     public void onRecipeCardClick(int position) {
 
+        RecipeCard recipeCard = recipeCards.get(position);
+
+        String recipeName = recipeCard.getName();
+        String servings = recipeCard.getServings();
+        ArrayList<IngredientsList> ingredientsLists = recipeCard.getIngredients();
+        ArrayList<StepsList> stepsLists = recipeCard.getSteps();
+
+        Intent intent = new Intent(MainActivity.this, StepAndIngredientsActivity.class);
+        intent.putExtra(Constants.SEND_RECIPE_NAME, recipeName);
+        intent.putExtra(Constants.SEND_RECIPE_SERVINGS, servings);
+        intent.putParcelableArrayListExtra(Constants.SEND_RECIPE_INGREDIENTS_LIST, ingredientsLists);
+        intent.putParcelableArrayListExtra(Constants.SEND_RECIPE_STEPS_LIST, stepsLists);
+        startActivity(intent);
     }
 }

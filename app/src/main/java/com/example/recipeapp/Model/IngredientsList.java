@@ -1,9 +1,12 @@
 package com.example.recipeapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class IngredientsList {
+public class IngredientsList implements Parcelable {
 
     @SerializedName("quantity")
     @Expose
@@ -16,6 +19,24 @@ public class IngredientsList {
     @SerializedName("ingredient")
     @Expose
     private String ingredient;
+
+    protected IngredientsList(Parcel in) {
+        quantity = in.readString();
+        measure = in.readString();
+        ingredient = in.readString();
+    }
+
+    public static final Creator<IngredientsList> CREATOR = new Creator<IngredientsList>() {
+        @Override
+        public IngredientsList createFromParcel(Parcel in) {
+            return new IngredientsList(in);
+        }
+
+        @Override
+        public IngredientsList[] newArray(int size) {
+            return new IngredientsList[size];
+        }
+    };
 
     public String getQuantity() {
         return quantity;
@@ -48,5 +69,17 @@ public class IngredientsList {
                 ", measure='" + measure + '\'' +
                 ", ingredient='" + ingredient + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(quantity);
+        dest.writeString(measure);
+        dest.writeString(ingredient);
     }
 }

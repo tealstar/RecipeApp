@@ -1,11 +1,14 @@
 package com.example.recipeapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class RecipeCard {
+public class RecipeCard implements Parcelable {
 
     @SerializedName("name")
     @Expose
@@ -22,6 +25,23 @@ public class RecipeCard {
     @SerializedName("steps")
     @Expose
     private ArrayList<StepsList> steps;
+
+    protected RecipeCard(Parcel in) {
+        name = in.readString();
+        servings = in.readString();
+    }
+
+    public static final Creator<RecipeCard> CREATOR = new Creator<RecipeCard>() {
+        @Override
+        public RecipeCard createFromParcel(Parcel in) {
+            return new RecipeCard(in);
+        }
+
+        @Override
+        public RecipeCard[] newArray(int size) {
+            return new RecipeCard[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -65,5 +85,16 @@ public class RecipeCard {
                 ", ingredients=" + ingredients +
                 ", steps=" + steps +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(servings);
     }
 }

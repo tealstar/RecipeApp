@@ -29,8 +29,6 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
     public RecipeCardAdapter(Context context, List<RecipeCard> recipeCardList){
         mContext = context;
         mRecipeCardList = recipeCardList;
-
-        Log.e(TAG, Integer.toString(mRecipeCardList.size()));
     }
 
     @NonNull
