@@ -1,22 +1,21 @@
-package com.example.recipeapp;
+package com.example.recipeapp.UIScreen2Components;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
+import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.Model.IngredientsList;
-import com.example.recipeapp.Model.RecipeCard;
 import com.example.recipeapp.Model.StepsList;
+import com.example.recipeapp.R;
+import com.example.recipeapp.UIScreen3Components.StepDetails;
 
 import java.util.ArrayList;
 
 public class StepAndIngredientsActivity extends AppCompatActivity implements
-    StepAndIngredientsFragment.OnListItemClickListener{
+        StepAndIngredientsFragment.OnListItemClickListener {
 
     private String recipeName;
     private String recipeServings;
@@ -69,10 +68,14 @@ public class StepAndIngredientsActivity extends AppCompatActivity implements
 
     @Override
     public void onListItemClick(int position) {
-        Toast.makeText(this, "hallelujah", Toast.LENGTH_SHORT).show();
+
+        StepsList stepsList = stepsLists.get(position);
+        String shortDescription = stepsList.getShortDescription();
+        String videoUrl = stepsList.getVideoURL();
 
         Intent intent = new Intent(StepAndIngredientsActivity.this, StepDetails.class);
-        intent.putParcelableArrayListExtra(Constants.SEND_RECIPE_STEPS_LIST, stepsLists);
+        intent.putExtra(Constants.SEND_RECIPE_SHORT_DESCRIPTION, shortDescription);
+        intent.putExtra(Constants.SEND_RECIPE_VIDEO_URL, videoUrl);
         startActivity(intent);
     }
 }

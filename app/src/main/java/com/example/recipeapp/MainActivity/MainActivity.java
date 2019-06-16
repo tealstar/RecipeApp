@@ -1,4 +1,4 @@
-package com.example.recipeapp;
+package com.example.recipeapp.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,14 +10,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 
+import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.Model.IngredientsList;
 import com.example.recipeapp.Model.RecipeCard;
 import com.example.recipeapp.Model.StepsList;
+import com.example.recipeapp.R;
+import com.example.recipeapp.RecipeApi;
+import com.example.recipeapp.UIScreen2Components.StepAndIngredientsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnClickListener,
-    RecipeCardAdapter.OnRecipeCardClick{
+        RecipeCardAdapter.OnRecipeCardClick {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
     private RecipeCardAdapter mAdapter;
 
     private List<RecipeCard> recipeCards;
-
-    private String baseUrl = "https://d17h27t6h515a5.cloudfront.net/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
 
     private void getRecipeData(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -11,9 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StepDetails"></activity>
-        <activity android:name=".StepAndIngredientsActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".UIScreen3Components.StepDetails">
+            <meta-data
+                android:name='android.support.PARENT_ACTIVITY'
+                android:value=".UIScreen2Components.StepAndIngredientsActivity" />
+        </activity>
+        <activity android:name=".UIScreen2Components.StepAndIngredientsActivity"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name='android.support.PARENT_ACTIVITY'
+                android:value=".MainActivity.MainActivity" />
+        </activity>
+        <activity android:name=".MainActivity.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

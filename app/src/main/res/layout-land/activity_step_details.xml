@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UIScreen2Components.StepAndIngredientsActivity">
-    
+    tools:context=".UIScreen2Components.StepAndIngredientsActivity"
+    android:id="@+id/phone_video_landscape_layout">
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/step_details_frame_layout"/>
+
 </RelativeLayout>

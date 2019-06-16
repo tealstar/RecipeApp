@@ -1,16 +1,8 @@
-package com.example.recipeapp;
+package com.example.recipeapp.UIScreen2Components;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.database.DataSetObserver;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.Model.IngredientsList;
 import com.example.recipeapp.Model.StepsList;
+import com.example.recipeapp.R;
 
 import java.util.ArrayList;
 
@@ -51,6 +43,9 @@ public class StepAndIngredientsFragment extends Fragment {
         stepsLists = new ArrayList<>();
     }
 
+    /*
+    * https://www.youtube.com/watch?v=vdCejJobMp4
+    * */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +61,7 @@ public class StepAndIngredientsFragment extends Fragment {
 
             String displayIngredients = "";
 
-            displayIngredients += recipeName + ": \n";
+            displayIngredients += recipeName + ": \n\n";
             for(int i = 0; i < ingredientsLists.size(); i++){
                 IngredientsList ingredients = ingredientsLists.get(i);
 
@@ -75,25 +70,25 @@ public class StepAndIngredientsFragment extends Fragment {
                 displayIngredients += ingredients.getIngredient() + "\n";
             }
 
-            displayIngredients += "Servings: " + servingSize;
+            displayIngredients += "\n"
+                    + getString(R.string.servings)
+                    + " "
+                    + servingSize;
 
             ingredientsTextView.setText(displayIngredients);
 
             stepsLists = bundle.getParcelableArrayList(Constants.SEND_RECIPE_STEPS_LIST);
-            ArrayList<String> shortDescriptionList = new ArrayList<>();
+            ArrayList<String> descriptionList = new ArrayList<>();
             for(int i = 0; i < stepsLists.size(); i++){
                 StepsList steps = stepsLists.get(i);
 
-                String shortDescription = steps.getShortDescription();
+                String description = steps.getDescription();
 
-                shortDescriptionList.add(shortDescription + "...");
-                Log.e("list", shortDescription);
+                descriptionList.add(description + "...");
             }
 
-            Log.e("test", Integer.toString(shortDescriptionList.size()));
-
             mAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1,
-                    shortDescriptionList);
+                    descriptionList);
             stepsListView.setAdapter(mAdapter);
 
             stepsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -4,5 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="next_step_button">See Next Step</string>
+    <string name="servings">Servings:</string>
+    <string name="save_to_widget_button">Save To Widget</string>
 
 </resources>
