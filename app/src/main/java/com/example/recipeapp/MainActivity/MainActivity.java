@@ -1,15 +1,15 @@
 package com.example.recipeapp.MainActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.Model.IngredientsList;
@@ -30,6 +30,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/*
+ * Main activity opens with a recycler view that display recipe cards from json.
+ *
+ * */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnClickListener,
         RecipeCardAdapter.OnRecipeCardClick {
 
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
 
     }
 
-    private void getRecipeData(){
+    private void getRecipeData() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -79,15 +83,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnCli
         });
     }
 
-    private void displayData(List<RecipeCard> cards){
+    private void displayData(List<RecipeCard> cards) {
 
         mainActivityRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
 
-        if(findViewById(R.id.main_activity_phone_layout) != null){
+        if (findViewById(R.id.main_activity_phone_layout) != null) {
             mainActivityRecyclerView.setLayoutManager(linearLayoutManager);
-        }else {
+        } else {
             mainActivityRecyclerView.setLayoutManager(gridLayoutManager);
         }
         mAdapter = new RecipeCardAdapter(this, cards);

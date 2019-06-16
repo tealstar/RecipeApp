@@ -17,6 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/*
+ * Adapter for recylerView in MainActivity
+ * */
+
 public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.RecipeCardAdapterViewHolder> {
 
     private static final String TAG = RecipeCardAdapter.class.getSimpleName();
@@ -26,7 +30,7 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
 
     private OnRecipeCardClick mClickListener;
 
-    public RecipeCardAdapter(Context context, List<RecipeCard> recipeCardList){
+    public RecipeCardAdapter(Context context, List<RecipeCard> recipeCardList) {
         mContext = context;
         mRecipeCardList = recipeCardList;
     }
@@ -59,16 +63,16 @@ public class RecipeCardAdapter extends RecyclerView.Adapter<RecipeCardAdapter.Re
         return mRecipeCardList.size();
     }
 
-    public interface OnRecipeCardClick{
-        void onRecipeCardClick(int position);
-    }
-
-    public void setOnClickListener(OnRecipeCardClick listener){
+    public void setOnClickListener(OnRecipeCardClick listener) {
         mClickListener = listener;
     }
 
+    public interface OnRecipeCardClick {
+        void onRecipeCardClick(int position);
+    }
+
     public class RecipeCardAdapterViewHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener{
+            implements View.OnClickListener {
 
         @BindView(R.id.recipe_card_text_view)
         TextView recipeCardTextView;

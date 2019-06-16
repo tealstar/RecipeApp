@@ -3,19 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UIScreen2Components.StepAndIngredientsFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".UIScreen2Components.StepAndIngredientsFragment">
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/player_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/player_view"/>
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/video_not_avail_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/no_video_available"/>
+        android:src="@drawable/no_video_available" />
+
     <TextView
         android:id="@+id/description_text_view"
         android:layout_width="match_parent"

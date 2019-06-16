@@ -1,10 +1,10 @@
 package com.example.recipeapp.UIScreen2Components;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.Model.IngredientsList;
@@ -15,16 +15,19 @@ import com.example.recipeapp.UIScreen3Components.StepDetailsFragment;
 
 import java.util.ArrayList;
 
+/*
+ * Activity that displays when ingredients and steps from StepAndIngredientFragment.class.
+ * */
 public class StepAndIngredientsActivity extends AppCompatActivity implements
         StepAndIngredientsFragment.OnListItemClickListener {
 
+    FragmentManager fragmentManager;
+    Bundle bundle;
     private String recipeName;
     private String recipeServings;
     private ArrayList<IngredientsList> ingredientsLists;
     private ArrayList<StepsList> stepsLists;
     private Boolean mTwoPane;
-    FragmentManager fragmentManager;
-    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class StepAndIngredientsActivity extends AppCompatActivity implements
 
         fragmentManager = getSupportFragmentManager();
         bundle = new Bundle();
+
+        //changes view depending on whether a phone or tablet is used.
 
         if (findViewById(R.id.tablet_view_step_detail_layout) != null) {
             mTwoPane = true;
@@ -91,7 +96,7 @@ public class StepAndIngredientsActivity extends AppCompatActivity implements
             intent.putExtra(Constants.SEND_RECIPE_SHORT_DESCRIPTION, shortDescription);
             intent.putExtra(Constants.SEND_RECIPE_VIDEO_URL, videoUrl);
             startActivity(intent);
-        }else {
+        } else {
             StepDetailsFragment stepDetailsFragment = new StepDetailsFragment();
             bundle.putString(Constants.SEND_RECIPE_SHORT_DESCRIPTION, shortDescription);
             bundle.putString(Constants.SEND_RECIPE_VIDEO_URL, videoUrl);
@@ -103,4 +108,4 @@ public class StepAndIngredientsActivity extends AppCompatActivity implements
         }
     }
 
-    }
+}

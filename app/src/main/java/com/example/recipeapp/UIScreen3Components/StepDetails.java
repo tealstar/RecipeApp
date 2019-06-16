@@ -1,14 +1,18 @@
 package com.example.recipeapp.UIScreen3Components;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
 
 import com.example.recipeapp.Model.Constants;
 import com.example.recipeapp.R;
 
-public class StepDetails extends AppCompatActivity{
+/*
+ * Step details class displays information when ListView item is clicked
+ * in StepsAndIngredientsActivity
+ * */
+public class StepDetails extends AppCompatActivity {
 
     private String shortDescription;
     private String videoUrl;
@@ -18,24 +22,23 @@ public class StepDetails extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_details);
 
-
         getRecipeInformation();
     }
 
-    private void getRecipeInformation(){
+    private void getRecipeInformation() {
 
-        if(getIntent().hasExtra(Constants.SEND_RECIPE_SHORT_DESCRIPTION)){
+        if (getIntent().hasExtra(Constants.SEND_RECIPE_SHORT_DESCRIPTION)) {
             shortDescription = getIntent().getStringExtra(Constants.SEND_RECIPE_SHORT_DESCRIPTION);
         }
 
-        if(getIntent().hasExtra(Constants.SEND_RECIPE_VIDEO_URL)){
+        if (getIntent().hasExtra(Constants.SEND_RECIPE_VIDEO_URL)) {
             videoUrl = getIntent().getStringExtra(Constants.SEND_RECIPE_VIDEO_URL);
         }
 
         showRecipeInformation();
     }
 
-    private void showRecipeInformation(){
+    private void showRecipeInformation() {
 
         StepDetailsFragment stepDetailsFragment = new StepDetailsFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();

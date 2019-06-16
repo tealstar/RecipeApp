@@ -3,20 +3,15 @@ package com.example.recipeapp.UIScreen3Components;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.recipeapp.Model.Constants;
-import com.example.recipeapp.Model.IngredientsList;
-import com.example.recipeapp.Model.StepsList;
 import com.example.recipeapp.R;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -31,20 +26,22 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/*
+ * Fragment class for StepDetails activity
+ * */
 public class StepDetailsFragment extends Fragment {
 
-    private SimpleExoPlayer mExoPlayer;
-    @BindView(R.id.player_view) SimpleExoPlayerView
-    mPlayerView;
+    @BindView(R.id.player_view)
+    SimpleExoPlayerView
+            mPlayerView;
     @BindView(R.id.description_text_view)
     TextView descriptionTextView;
     @BindView(R.id.video_not_avail_image)
     ImageView videoNotAvailableImage;
+    private SimpleExoPlayer mExoPlayer;
 
     public StepDetailsFragment() {
     }
@@ -56,15 +53,16 @@ public class StepDetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_step_details, container, false);
         ButterKnife.bind(this, rootView);
 
-
         Bundle bundle = getArguments();
 
-        if(bundle != null) {
+        if (bundle != null) {
 
             String shortDescription = bundle.getString(Constants.SEND_RECIPE_SHORT_DESCRIPTION);
             String videoURL = bundle.getString(Constants.SEND_RECIPE_VIDEO_URL);
 
-            if(videoURL.equals("")){
+            //if there is no videoUrl in Json, exoplayer is replaced with image
+            //explaining that no video is available for this step
+            if (videoURL.equals("")) {
                 mPlayerView.setVisibility(View.GONE);
                 videoNotAvailableImage.setVisibility(View.VISIBLE);
             } else {
@@ -72,19 +70,19 @@ public class StepDetailsFragment extends Fragment {
                 initializePlayer(Uri.parse(videoURL));
             }
 
-            if(rootView.findViewById(R.id.phone_video_landscape_layout)!= null){
+            //changes layout if phone is in landscape mode
+            if (rootView.findViewById(R.id.phone_video_landscape_layout) != null) {
                 descriptionTextView.setVisibility(View.GONE);
             }
 
             descriptionTextView.setText(shortDescription);
         }
-
         return rootView;
     }
 
     private void initializePlayer(Uri mediaUrl) {
 
-        if(mExoPlayer == null){
+        if (mExoPlayer == null) {
             TrackSelector selector = new DefaultTrackSelector();
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), selector, loadControl);
@@ -98,7 +96,7 @@ public class StepDetailsFragment extends Fragment {
         }
     }
 
-    private void releasePlayer(){
+    private void releasePlayer() {
         mExoPlayer.stop();
         mExoPlayer.release();
         mExoPlayer = null;
@@ -108,7 +106,7 @@ public class StepDetailsFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        if(mExoPlayer != null) {
+        if (mExoPlayer != null) {
             releasePlayer();
         }
     }

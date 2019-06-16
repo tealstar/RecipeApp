@@ -11,18 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".IngredientsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_widget_info" />
+        </receiver>
+
         <activity android:name=".UIScreen3Components.StepDetails">
             <meta-data
-                android:name='android.support.PARENT_ACTIVITY'
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UIScreen2Components.StepAndIngredientsActivity" />
         </activity>
-        <activity android:name=".UIScreen2Components.StepAndIngredientsActivity"
+        <activity
+            android:name=".UIScreen2Components.StepAndIngredientsActivity"
             android:launchMode="singleTask">
             <meta-data
-                android:name='android.support.PARENT_ACTIVITY'
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity.MainActivity"
+        <activity
+            android:name=".MainActivity.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -38,7 +38,7 @@
             android:layout_margin="8dp"
             android:divider="@color/colorAccent"
             android:dividerHeight="10.0dp"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
     </LinearLayout>
 

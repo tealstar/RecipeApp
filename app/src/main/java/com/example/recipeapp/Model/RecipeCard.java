@@ -10,27 +10,6 @@ import java.util.ArrayList;
 
 public class RecipeCard implements Parcelable {
 
-    @SerializedName("name")
-    @Expose
-    private String name;
-
-    @SerializedName("servings")
-    @Expose
-    private String servings;
-
-    @SerializedName("ingredients")
-    @Expose
-    private ArrayList<IngredientsList> ingredients;
-
-    @SerializedName("steps")
-    @Expose
-    private ArrayList<StepsList> steps;
-
-    protected RecipeCard(Parcel in) {
-        name = in.readString();
-        servings = in.readString();
-    }
-
     public static final Creator<RecipeCard> CREATOR = new Creator<RecipeCard>() {
         @Override
         public RecipeCard createFromParcel(Parcel in) {
@@ -42,6 +21,23 @@ public class RecipeCard implements Parcelable {
             return new RecipeCard[size];
         }
     };
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("servings")
+    @Expose
+    private String servings;
+    @SerializedName("ingredients")
+    @Expose
+    private ArrayList<IngredientsList> ingredients;
+    @SerializedName("steps")
+    @Expose
+    private ArrayList<StepsList> steps;
+
+    protected RecipeCard(Parcel in) {
+        name = in.readString();
+        servings = in.readString();
+    }
 
     public String getName() {
         return name;
