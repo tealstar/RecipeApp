@@ -11,5 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/text_color_text_views"
         android:id="@+id/recipe_card_text_view"/>
 </androidx.cardview.widget.CardView>
